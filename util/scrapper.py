@@ -209,16 +209,18 @@ writeln(report, "8. Completed getting Alberta tests records")
 #   a. cases: number of cases can be extracted from canada site
 #   b. Tests: scrappe from 'http://www.bccdc.ca/about/news-stories/stories/2020/information-on-novel-coronavirus'
 writeln(report, "9. Getting BC tests...")
-soup = get_soup('https://www.alberta.ca/covid-19-alberta-data.aspx')
-table = soup.find(id='goa-grid25723').find_all(class_='goa-tableouter')[1].find_all('table')[0]
-tr = table.find_all('tr')[0]
-# Hardcoding values of attributes with expected ones to compare in case the website changes
-if ! re.match("Completed tests", tr.find_all('th')[0].text):
-    writeln(report, "ERROR: Alberta tests table on website not what expected")
-    exit()
-record = date_today + ", " + tr.find_all('td')[0].text.replace(",","")
 
-with open("../datasets/alberta-tests.csv","a") as alberta_tests:
-    writeln(alberta_tests, record)
+# WIP: NEED TO FIX COMMENTED OUT CODE TO BE USED FOR BC DATA
+#soup = get_soup('https://www.alberta.ca/covid-19-alberta-data.aspx')
+# table = soup.find(id='goa-grid25723').find_all(class_='goa-tableouter')[1].find_all('table')[0]
+# tr = table.find_all('tr')[0]
+# Hardcoding values of attributes with expected ones to compare in case the website changes
+# if ! re.match("Completed tests", tr.find_all('th')[0].text):
+#     writeln(report, "ERROR: Alberta tests table on website not what expected")
+#     exit()
+# record = date_today + ", " + tr.find_all('td')[0].text.replace(",","")
+#
+# with open("../datasets/alberta-tests.csv","a") as alberta_tests:
+#     writeln(alberta_tests, record)
 
 writeln(report, "10. Completed getting BC tests records")
